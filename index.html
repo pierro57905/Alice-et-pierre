@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nos 7 ans</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Style suisse : grille stricte, fer à gauche, noir / blanc / rouge, une seule grotesque */
+  --bg: #0b0a0d;
+  --ink: #ffffff;
+  --grey: #8f8a9c;
+  --rule: #7b4dff;
+  --red: #9d74ff;
+  --sans: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+.page { max-width: 480px; margin: 0 auto; padding: 0 20px 48px; }
+h1, h2, p { margin: 0; }
+h1, h2 { text-wrap: balance; }
+
+/* Grille : colonne d'étiquette + colonne de contenu */
+.row {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 0 16px;
+  border-top: 2px solid var(--rule);
+  padding: 14px 0 40px;
+}
+.label {
+  font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  line-height: 1.3;
+}
+.label .num { display: block; color: var(--red); font-variant-numeric: tabular-nums; }
+
+/* En-tête */
+.top {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 18px 0 10px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
+}
+.hero { padding-bottom: 28px; }
+.big {
+  font-weight: 800; font-size: 212px; line-height: .78; letter-spacing: -.07em;
+  margin-left: -8px; font-variant-numeric: tabular-nums;
+}
+.big span { color: var(--red); }
+.photo { margin: 22px 0 0; }
+.photo img {
+  display: block; width: 100%; height: auto; aspect-ratio: 4 / 5;
+  object-fit: cover; object-position: 50% 72%;
+  border-top: 4px solid var(--red);
+}
+.photo figcaption {
+  display: grid; grid-template-columns: 72px 1fr; gap: 16px;
+  padding-top: 8px; font-size: 13px; color: var(--grey);
+}
+.photo figcaption span { color: var(--red); font-weight: 700; text-transform: uppercase; letter-spacing: .04em; font-size: 12px; }
+.hero h1 {
+  font-size: 44px; font-weight: 800; line-height: .98; letter-spacing: -.035em;
+  margin-top: 18px;
+}
+.hero .meta {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  margin-top: 26px; padding-top: 10px; border-top: 1px solid var(--rule);
+  font-size: 13px; line-height: 1.35;
+}
+.hero .meta b { display: block; font-weight: 700; }
+
+/* Lettre */
+.letter { display: flex; flex-direction: column; gap: 14px; }
+.letter h2 { font-size: 30px; font-weight: 800; letter-spacing: -.03em; line-height: 1; margin-bottom: 4px; }
+.letter p { font-size: 17px; }
+.letter .lead { font-size: 21px; font-weight: 500; line-height: 1.3; letter-spacing: -.01em; }
+.letter .sign { font-weight: 800; font-size: 22px; letter-spacing: -.02em; margin-top: 6px; }
+.letter .sign::before { content: ""; display: block; width: 32px; height: 4px; background: var(--red); margin-bottom: 12px; }
+
+/* Chiffres */
+.stats { display: grid; grid-template-columns: 1fr 1fr; border-left: 1px solid var(--rule); }
+.stat {
+  border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+  padding: 10px 10px 12px; display: flex; flex-direction: column; justify-content: space-between; gap: 18px;
+  min-height: 118px;
+}
+.stats .stat:nth-child(-n+2) { border-top: 1px solid var(--rule); }
+.stat b {
+  font-weight: 800; font-size: 40px; line-height: .9; letter-spacing: -.04em;
+  font-variant-numeric: tabular-nums;
+}
+.stat.accent { background: #5b2ee0; color: #fff; border-color: var(--rule); }
+.stat span { font-size: 13px; line-height: 1.3; }
+
+/* Premières fois */
+.list { list-style: none; margin: 0; padding: 0; }
+.list li {
+  display: grid; grid-template-columns: 34px 1fr; gap: 8px;
+  padding: 10px 0; border-bottom: 1px solid var(--rule);
+  font-size: 18px; font-weight: 500; letter-spacing: -.01em; line-height: 1.25;
+}
+.list li:first-child { border-top: 1px solid var(--rule); }
+.list .n { color: var(--red); font-weight: 700; font-size: 13px; padding-top: 4px; font-variant-numeric: tabular-nums; }
+.list li.next { color: var(--grey); }
+
+
+/* Année après année */
+.row.wide { grid-template-columns: 1fr; gap: 14px; }
+.row.wide .label { display: flex; gap: 8px; }
+.row.wide .label .num { display: inline; }
+.years { display: flex; flex-direction: column; gap: 36px; min-width: 0; }
+.year { display: flex; flex-direction: column; gap: 12px; }
+.year-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  border-bottom: 1px solid var(--rule); padding-bottom: 6px;
+}
+.year-head .y { font-weight: 800; font-size: 44px; line-height: .9; letter-spacing: -.045em; font-variant-numeric: tabular-nums; }
+.year-head .y-n { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--red); }
+.shots { display: grid; gap: 10px; }
+.shots.two { grid-template-columns: 1fr 1fr; }
+.shots figure { margin: 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.shots img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; }
+.shots.one img { aspect-ratio: 4 / 5; }
+.shots.three { grid-template-columns: 1fr 1fr; }
+.shots.stack { grid-template-columns: 1fr; gap: 16px; }
+.shots.stack img { aspect-ratio: 4 / 5; }
+.shots .land img { aspect-ratio: 4 / 3; }
+.shots.three figure:first-child { grid-column: 1 / -1; }
+.shots.three figure:first-child img { aspect-ratio: 4 / 5; }
+.shots figcaption { font-size: 13px; line-height: 1.35; color: var(--grey); }
+
+/* Fin */
+.end h2 { font-size: 52px; font-weight: 800; line-height: .92; letter-spacing: -.045em; }
+.end h2 span { color: var(--red); }
+.btn {
+  margin-top: 22px; font: inherit; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: .04em;
+  background: var(--ink); color: var(--bg); border: 0; border-radius: 0;
+  padding: 14px 18px; cursor: pointer; display: inline-flex; text-align: left; line-height: 1.3; gap: 10px; align-items: center;
+}
+.btn::after { content: ""; width: 10px; height: 10px; background: var(--red); }
+.btn:focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
+.foot {
+  display: flex; justify-content: space-between; border-top: 2px solid var(--rule);
+  padding-top: 10px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
+}
+
+/* Petits carrés rouges */
+#squares { position: fixed; inset: 0; pointer-events: none; overflow: hidden; }
+.sq { position: absolute; bottom: -20px; background: var(--red); animation: rise 2.8s cubic-bezier(.3,.1,.6,1) forwards; }
+@keyframes rise { to { transform: translateY(-110vh) rotate(90deg); } }
+@media (prefers-reduced-motion: reduce) { .sq { display: none; } }
+
+@media (max-width: 360px) {
+  .row { grid-template-columns: 1fr; gap: 10px; }
+  .big { font-size: 170px; }
+}
+</style>
+</head>
+<body>
+<main class="page">
+
+  <div class="top"><span>Pierre &amp; Alice</span><span>24.10.2019 / 24.10.2026</span></div>
+
+  <header class="hero">
+    <div class="big">0<span>7</span></div>
+    <figure class="photo">
+      <img src="nous.jpg" alt="Pierre et Alice dans une salle de miroirs remplie de lumières" width="1000" height="1502">
+      <figcaption><span>Fig. 01</span>Nous deux, perdus dans les lumières.</figcaption>
+    </figure>
+    <h1>Sept ans d'amour, de chapitres et de premières fois.</h1>
+    <div class="meta">
+      <div><b>Noces de laine</b>7<sup>e</sup> anniversaire</div>
+      <div><b>Livret n° 2</b>Après celui des 6 ans</div>
+    </div>
+  </header>
+
+  <section class="row" aria-labelledby="t1">
+    <div class="label"><span class="num">01</span>Lettre</div>
+    <div class="letter">
+      <h2 id="t1">Alice,</h2>
+      <p class="lead">L'an dernier, tu m'as écrit nos six années. Cette fois, c'est à mon tour d'ouvrir mon cœur.</p>
+      <p>Sept ans. Sept ans d'amour où l'on a traversé plein de chapitres, des faciles et des plus durs, toujours à deux.</p>
+      <p>Sept ans à se soutenir mutuellement. Moi avec mes doutes, toi avec ton petit côté princesse, que j'aime bien plus que je ne le montre.</p>
+      <p>Sept ans que, chaque matin, j'ai droit à mon bisou d'au revoir. Je ne m'en lasse pas. Et sept ans que tu me rassures en me disant que ma coupe est bien, même les jours où elle ne le mérite pas vraiment.</p>
+      <p>On a grandi ensemble. Notre première soirée, nos premiers diplômes, nos premiers voyages, ce premier trajet en stop, l'Asie découverte côte à côte. Avec toi, j'ai compris que les premières fois ne s'arrêtent pas avec les années.</p>
+      <p>Cette année, la vie t'a mise face à une épreuve que tu n'attendais pas. Depuis qu'on a découvert ta maladie, je te vois l'affronter avec un courage qui m'impressionne chaque jour. Je suis à tes côtés, et j'y serai toujours, sans faille. Et je suis confiant pour la suite : je crois en toi, je crois en nous, et je sais que les plus belles pages sont encore devant nous.</p>
+      <p>Et parce que rien ne nous arrête, j'ai un rêve pour la suite : partir vivre une aventure à l'étranger, avec toi. Une nouvelle première fois, peut-être la plus belle de toutes.</p>
+      <p>Je t'aime.</p>
+      <p class="sign">Pierre</p>
+    </div>
+  </section>
+
+  <section class="row" aria-labelledby="t2">
+    <div class="label"><span class="num">02</span>En chiffres</div>
+    <div>
+      <h2 id="t2" class="label" style="position:absolute;left:-9999px">En chiffres</h2>
+      <div class="stats">
+        <div class="stat accent"><b id="days">2 563</b><span>jours ensemble</span></div>
+        <div class="stat"><b id="weeks">366</b><span>semaines</span></div>
+        <div class="stat"><b id="kisses">2 563</b><span>bisous d'au revoir, environ</span></div>
+        <div class="stat"><b>1 000</b><span>indécisions face au choix du plat</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="row wide" aria-labelledby="t3">
+    <div class="label"><span class="num">03</span>Année après année</div>
+    <div class="years">
+      <h2 id="t3" style="position:absolute;left:-9999px">Nos 7 ans, année après année</h2>
+
+      <article class="year">
+        <div class="year-head"><span class="y">2019</span><span class="y-n">Année 1</span></div>
+        <div class="shots two">
+          <figure>
+            <img src="2019-a.jpg" alt="Pierre et Alice en selfie avec des masques en tissu noirs" width="800" height="1316" loading="lazy" style="object-position:50% 15%">
+            <figcaption>Nos soirées « besties » qui ont fini dans un lit (et un bloop, by sheer accident).</figcaption>
+          </figure>
+          <figure>
+            <img src="2019-b.jpg" alt="Pierre tenant des fiches de révision d'allemand près d'une bougie" width="800" height="1316" loading="lazy" style="object-position:40% 40%">
+            <figcaption>Nos révisions d'allemand, qui ont réveillé en moi un esprit maléfique.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="year">
+        <div class="year-head"><span class="y">2020</span><span class="y-n">Année 2</span></div>
+        <div class="shots two">
+          <figure>
+            <img src="2020-a.jpg" alt="Alice et Pierre assis par terre, un sandwich à la main, Pierre lève le pouce" width="1000" height="750" loading="lazy" style="object-position:45% 50%">
+            <figcaption>Premiers voyages, et premières galères ensemble.</figcaption>
+          </figure>
+          <figure>
+            <img src="2020-b.jpg" alt="Alice fait un selfie dans un hall d'immeuble pendant que Pierre fait le pitre derrière elle" width="1000" height="1333" loading="lazy" style="object-position:50% 55%">
+            <figcaption>Notre première bêtise en voyage, un peu trop arrosée.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="year">
+        <div class="year-head"><span class="y">2021</span><span class="y-n">Année 3</span></div>
+        <div class="shots two">
+          <figure>
+            <img src="2021-a.jpg" alt="Pierre et Alice à vélo sous le soleil, Alice crie de joie" width="1000" height="750" loading="lazy" style="object-position:50% 40%">
+            <figcaption>Un petit week-end hors du temps, inoubliable.</figcaption>
+          </figure>
+          <figure>
+            <img src="2021-b.jpg" alt="Alice lève le pouce devant le panneau Sainte-Marie-de-Ré pendant que Pierre fait le pitre derrière" width="1000" height="1333" loading="lazy">
+            <figcaption>Notre humour en une image, et tous nos fous rires ensemble.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="year">
+        <div class="year-head"><span class="y">2022</span><span class="y-n">Année 4</span></div>
+        <div class="shots three">
+          <figure>
+            <img src="2022-a.jpg" alt="Alice en casquette sur le canapé de leur premier appartement, murs en briques" width="1000" height="1333" loading="lazy" style="object-position:55% 45%">
+            <figcaption>Notre premier appart, et nos premières soirées Koh-Lanta (sous swag).</figcaption>
+          </figure>
+          <figure>
+            <img src="2022-b.jpg" alt="Selfie de nuit d'Alice et Pierre, bandanas rouge et vert" width="1000" height="1333" loading="lazy">
+            <figcaption>Des fêtards inarrêtables.</figcaption>
+          </figure>
+          <figure>
+            <img src="2022-c.jpg" alt="Alice en chapeau de cowboy tire la langue dans le miroir d'un photomaton, Pierre caché derrière elle" width="1000" height="1333" loading="lazy" style="object-position:50% 40%">
+            <figcaption>Un long moment loin l'un de l'autre, mais une fois réunis, les bêtises reprennent.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="year">
+        <div class="year-head"><span class="y">2023</span><span class="y-n">Année 5</span></div>
+        <div class="shots stack">
+          <figure>
+            <img src="2023-a.jpg" alt="Alice essaie un top coloré dans une friperie, un homme derrière elle la regarde en faisant la moue" width="1000" height="1333" loading="lazy" style="object-position:40% 35%">
+            <figcaption>Des shoppeurs fous qui attirent les convoitises.</figcaption>
+          </figure>
+          <figure class="land">
+            <img src="2023-b.jpg" alt="Selfie de groupe au ski avec Alice, Pierre et leurs proches devant les montagnes enneigées" width="1000" height="750" loading="lazy">
+            <figcaption>Une nouvelle famille.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="year">
+        <div class="year-head"><span class="y">2024</span><span class="y-n">Année 6</span></div>
+        <div class="shots two">
+          <figure>
+            <img src="2024-a.jpg" alt="Alice boit un spritz à la paille, Pierre sourit à côté d'elle" width="1000" height="1333" loading="lazy">
+            <figcaption>Italie + spritz = couple heureux.</figcaption>
+          </figure>
+          <figure>
+            <img src="2024-b.jpg" alt="Alice en poncho rouge et Pierre en poncho jaune sous la pluie, en ville en Asie" width="1000" height="1333" loading="lazy">
+            <figcaption>Toujours fashion, en toute circonstance.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="year">
+        <div class="year-head"><span class="y">2025</span><span class="y-n">Année 7</span></div>
+        <div class="shots two">
+          <figure>
+            <img src="2025-a.jpg" alt="Selfie d'Alice et Pierre dans les jardins fleuris de Giverny" width="1000" height="1333" loading="lazy">
+            <figcaption>Giverny, une parenthèse qui pourrait durer toute la vie.</figcaption>
+          </figure>
+          <figure>
+            <img src="2025-b.jpg" alt="Alice et Pierre en lunettes de soleil dans un miroir encadré de noir" width="1000" height="824" loading="lazy" style="object-position:52% 60%">
+            <figcaption>Partners in crime.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="year">
+        <div class="year-head"><span class="y">2026</span><span class="y-n">7 ans</span></div>
+        <div class="shots stack">
+          <figure class="land">
+            <img src="2026-a.jpg" alt="Pierre et Alice dansent dans un bar aux murs couverts de graffitis" width="1100" height="733" loading="lazy" style="object-position:45% 50%">
+            <figcaption>Enflammer la piste, comme on a toujours su le faire.</figcaption>
+          </figure>
+          <figure class="land">
+            <img src="2026-b.jpg" alt="Selfie souriant de Pierre et Alice côte à côte" width="1100" height="619" loading="lazy" style="object-position:22% 50%">
+            <figcaption>Une équipe de choc, pour toujours, contre vents et marées.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="row end" aria-labelledby="t4">
+    <div class="label"><span class="num">04</span>À suivre</div>
+    <div>
+      <h2 id="t4">Chapitre <span>08</span>,<br>on l'écrit ensemble.</h2>
+      <button class="btn" id="love" type="button">Rendez-vous ce soir pour une belle soirée</button>
+    </div>
+  </section>
+
+  <div class="foot"><span>P + A</span><span>Paris, 2026</span></div>
+</main>
+<div id="squares" aria-hidden="true"></div>
+
+<script>
+  const DEBUT = new Date(2019, 9, 24); // 24 octobre 2019
+  const days = Math.floor((Date.now() - DEBUT) / 86400000);
+  const fmt = n => n.toLocaleString("fr-FR");
+  document.getElementById("days").textContent = fmt(days);
+  document.getElementById("weeks").textContent = fmt(Math.floor(days / 7));
+  document.getElementById("kisses").textContent = fmt(days);
+
+  document.getElementById("love").addEventListener("click", () => {
+    const box = document.getElementById("squares");
+    for (let i = 0; i < 20; i++) {
+      const s = document.createElement("span");
+      const size = 6 + Math.random() * 18;
+      s.className = "sq";
+      s.style.width = s.style.height = size + "px";
+      s.style.left = Math.random() * 100 + "vw";
+      s.style.animationDelay = Math.random() * 0.7 + "s";
+      box.appendChild(s);
+      setTimeout(() => s.remove(), 3800);
+    }
+  });
+</script>
+</body>
+</html>
